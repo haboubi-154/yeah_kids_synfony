@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleve index{% endblock %}
+
+{% block body %}
+
+    <div style ="display:flex;align-items: center;justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h1>Eleve index</h1>
+
+                <br>
+                <nav id="navigation" class="style_one">
+                    <ul id="responsive">
+                        <li><a href="#">Trier Par</a>
+                            <ul>
+                                <li><a href="{{ path('trinom1') }}">Nom</a></li>
+
+                            </ul>
+                            <ul>
+                                <li><a href="{{ path('triprenom') }}">Prenom</a></li>
+
+                            </ul>
+                            <ul>
+                                <li><a href="{{ path('triage') }}">Age</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </nav>
+                <br>
+
+
+                <a href="{{ path('listEleve')}}"   class="btn-danger"> PDF</a>
+
+                <table class="table" >
+                    <thead>
+                    <tr>
+                        <th>Ide</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Age</th>
+                        <th>Idp</th>
+                        <th>Idj</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for eleve in eleves %}
+                        <tr>
+                            <td>{{ eleve.ide }}</td>
+                            <td>{{ eleve.nom }}</td>
+                            <td>{{ eleve.prenom }}</td>
+                            <td>{{ eleve.age }}</td>
+                            <td>{{ eleve.idp }}</td>
+                            <td>{{ eleve.idj }}</td>
+                            <td>
+                                <a href="{{ path('app_eleve_show', {'ide': eleve.ide}) }}"class="btn-info">show</a>
+                                <a href="{{ path('app_eleve_edit', {'ide': eleve.ide}) }}"class="btn-warning">edit</a>
+
+
+
+
+
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_eleve_new') }}"class="btn-success">Create new</a>
+                <div class="utf_pagination_container_part margin-bottom-70">
+                    <nav class="pagination">
+                        <ul>
+                            <li>{{ knp_pagination_render(eleves) }}</li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

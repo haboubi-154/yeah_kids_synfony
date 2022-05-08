@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 1</title>
+    <link rel="stylesheet" href={{asset('style.css')}} media="all" />
+</head>
+<body>
+<header class="clearfix">
+
+
+    <br>
+    <div id="company" class="clearfix">
+        <h1 class="align-center"><div>ile des enfants</div></h1>
+
+        <br>
+        <style>
+            body{
+                font:normal 12px/20PX "Liberation sans", Arial, Helvetica, sans-serif;
+                color:#585858;
+            }
+            img{
+                width:300px;
+                margin:10px;
+                border: solid 5px #E8E8E8;
+
+            }
+        </style>
+
+
+        <img src='data:image;base64,<?= {{ img64 }};?>' />
+    </div>
+    <br>
+    <h1 class="align-center"><div>Liste Jardins Enfants</div></h1>
+    <br>
+</header>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<main>
+    <table border="2" class="center">
+        <thead>
+        <tr>
+            <th><h2>Nom</h2></th>
+            <th><h2>Description</h2></th>
+            <th><h2>NbEmployes</h2></th>
+            <th><h2>Adresse</h2></th>
+            <th><h2>DateCreation</h2></th>
+            <th><h2>Prix</h2></th>
+            <th><h2>Telephone</h2></th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for jardinenfant in jardinenfants %}
+            <tr>
+                <td>{{ jardinenfant.nom }}</td>
+                <td>{{ jardinenfant.description }}</td>
+                <td>{{ jardinenfant.nbEmployes }}</td>
+                <td>{{ jardinenfant.adresse }}</td>
+                <td>{{ jardinenfant.dateCreation ? jardinenfant.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ jardinenfant.prix }}</td>
+                <td>{{ jardinenfant.telephone }}</td>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</main>
+
+</body>
+</html>

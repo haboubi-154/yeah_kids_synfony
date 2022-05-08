@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jardinenfant{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div style ="display:flex;align-items: center;justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h1>Jardinenfant</h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Idj</th>
+                        <td>{{ jardinenfant.idj }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ jardinenfant.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ jardinenfant.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Logo</th>
+                        <td>{{ jardinenfant.logo }}</td>
+                    </tr>
+                    <tr>
+                        <th>NbEmployes</th>
+                        <td>{{ jardinenfant.nbEmployes }}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{ jardinenfant.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>DateCreation</th>
+                        <td>{{ jardinenfant.dateCreation ? jardinenfant.dateCreation|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prix</th>
+                        <td>{{ jardinenfant.prix }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone</th>
+                        <td>{{ jardinenfant.telephone }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_jardinenfant_index') }}">back to list</a>
+
+                <a href="{{ path('app_jardinenfant_edit', {'idj': jardinenfant.idj}) }}">edit</a>
+
+                {{ include('jardinenfant/_delete_form.html.twig') }}
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
