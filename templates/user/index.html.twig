@@ -1,0 +1,61 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Login</th>
+                <th>Img</th>
+                <th>Password</th>
+                <th>Salt</th>
+                <th>Question</th>
+                <th>Responde</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.login }}</td>
+                <td><img src="{{ asset(user.img)}}" alt=""></td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.salt }}</td>
+                <td>{{ user.question }}</td>
+                <td>{{ user.responde }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    {% if user.block == 0 %}
+                    <a href="{{ path('app_user_block', {'id': user.id}) }}">block</a>
+                    {% else %}
+                    <a href="{{ path('app_user_block', {'id': user.id}) }}">deblock</a>
+
+
+                    {% endif %}
+    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

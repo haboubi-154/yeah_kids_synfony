@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{%block container %}
+<h1>LISTE DES UTILISATEUR</h1>
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>nom </th>
+    <th>prenom </th>
+    <th>email</th>
+    <th>login</th>
+    <th>question </th>
+    <th>reponse </th>
+    <th>role </th>
+</th>
+<tr {% for c in users %}>
+<td>{{c.id}}</td>
+<td>{{c.nom}}</td>
+<td>{{c.prenom}}</td>
+<td>{{c.email}}</td>
+<td>{{c.login}}</td>
+<td>{{c.question}}</td>
+<td>{{c.responde}}</td>
+<td>{{c.role}}</td>
+<td><a href="{{path('d',{'id':c.id})}}" >delete</a> </td>
+
+</tr {% endfor %}>
+</table>
+{% endblock %}

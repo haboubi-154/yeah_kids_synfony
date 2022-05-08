@@ -1,0 +1,22 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+<h1>LISTE DES reclamation</h1>
+<table border="2">
+<tr>
+    <th>ID_parent</th>
+    <th>Text</th>
+    <th>id_Reclamation</th>
+
+   
+</th>
+<tr {% for c in reclamation %}>
+<td>{{c.idParent}}</td>
+<td>{{c.text}}</td>
+<td>{{c.idReclamation}}</td>
+
+
+<td><a href="{{path('d',{'id':c.idReclamation})}}" >delete</a> </td>
+</tr {% endfor %}>
+</table>
+{% endblock %}
