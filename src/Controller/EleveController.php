@@ -255,10 +255,27 @@ class EleveController extends AbstractController
     }
 
 
+    /**
+     * @Route("/front/new", name="app_eleve_newFront", methods={"GET", "POST"})
+     */
+    public function newFront(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $eleve = new Eleve();
+        $form = $this->createForm(EleveType::class, $eleve);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($eleve);
+            $entityManager->flush();
 
+            return $this->redirectToRoute('app_jardinenfant_affiche', [], Response::HTTP_SEE_OTHER);
+        }
 
-
+        return $this->render('front/resJEnfEleve.html.twig', [
+            'eleve' => $eleve,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
     /**
