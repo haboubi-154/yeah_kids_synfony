@@ -61,6 +61,7 @@ class ProduitController extends AbstractController
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
+  
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
