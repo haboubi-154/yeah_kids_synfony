@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use App\Repository\EleveRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Eleve
  *
  * @ORM\Table(name="eleve")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EleveRepository")
  */
 class Eleve
 {
@@ -23,14 +25,24 @@ class Eleve
 
     /**
      * @var string
+     * @Assert\NotBlank(message=" nom doit etre non vide")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un nom au mini de 3 caracteres"
      *
+     *     )
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
+     * @Assert\NotBlank(message=" prenom doit etre non vide")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un prenom au mini de 3 caracteres"
      *
+     *     )
      * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
      */
     private $prenom;
@@ -44,7 +56,7 @@ class Eleve
 
     /**
      * @var int
-     *
+
      * @ORM\Column(name="idp", type="integer", nullable=false)
      */
     private $idp;
@@ -56,34 +68,54 @@ class Eleve
      */
     private $idj;
 
+
     public function getIde(): ?int
     {
         return $this->ide;
     }
 
-    public function getNom(): ?string
+    public function setIde(int $ide): self
+    {
+        $this->ide = $ide;
+
+        return $this;
+    }
+
+
+
+
+
+    public function getNom(): ?String
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(String $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+
+
+
+    public function getPrenom(): ?String
     {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(String $prenom): self
     {
         $this->prenom = $prenom;
 
         return $this;
     }
+
+
+
+
+
 
     public function getAge(): ?int
     {
@@ -97,6 +129,10 @@ class Eleve
         return $this;
     }
 
+
+
+
+
     public function getIdp(): ?int
     {
         return $this->idp;
@@ -109,6 +145,9 @@ class Eleve
         return $this;
     }
 
+
+
+
     public function getIdj(): ?int
     {
         return $this->idj;
@@ -116,10 +155,12 @@ class Eleve
 
     public function setIdj(int $idj): self
     {
-        $this->idj = $idj;
+        $this->idj= $idj;
 
         return $this;
     }
+
+
 
 
 }

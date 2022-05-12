@@ -2,222 +2,299 @@
 
 namespace App\Entity;
 
+use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 /**
- * Event
- *
- * @ORM\Table(name="event", indexes={@ORM\Index(name="IDX_3BAE0AA76B3CA4B", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Entity()
+
  */
 class Event
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
+
      *
-     * @ORM\Column(name="event", type="string", length=255, nullable=false)
+         * @ORM\ManyToOne (targetEntity=User::class)
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
-    private $event;
+    private $idUser;
+
 
     /**
      * @var string
      *
+     * @ORM\Column(name="event", type="string", length=255)
+     * @Assert\NotBlank (message ="le nom de l'event est obligatoire")
+     */
+    private $nomEvent;
+
+    /**
+     * @var string
+
      * @ORM\Column(name="Type", type="string", length=255, nullable=false)
      */
-    private $type;
+    private $typeEvent;
+
+
+
+
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="date_debut_event", type="string", length=255, nullable=false)
+     * @var \DateTime
+
+     * @ORM\Column(name="date_debut_event", type="datetime", nullable=false)
      */
     private $dateDebutEvent;
 
+
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="date_fin_event", type="string", length=255, nullable=true)
+     * @var \DateTime
+
+     * @ORM\Column(name="date_fin_event", type="datetime", nullable=true)
      */
     private $dateFinEvent;
 
+
+
+
     /**
      * @var string
-     *
+
      * @ORM\Column(name="lieu_event", type="string", length=255, nullable=false)
+      * @Assert\NotBlank (message ="le lieu de l'event est obligatoire")
      */
     private $lieuEvent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="capacite_event", type="integer", nullable=false)
+     * @ORM\Column(name="capacite_event", type="integer")
+     * @Assert\NotBlank (message ="le nombre de place de l'event est obligatoire")
      */
     private $capaciteEvent;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="description_event", type="string", length=255, nullable=false)
+     * @Assert\NotBlank (message ="la description de l'event est obligatoire")
      */
     private $descriptionEvent;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Il faut importer une image")
      */
     private $logo;
 
+
+
+
+
+
+
+
+
+
     /**
-     * @var int|null
-     *
+     * @var integer
+
+
      * @ORM\Column(name="prix_event", type="integer", nullable=true)
+     * @Assert\NotBlank (message ="le prix de l'event est obligatoire")
      */
     private $prixEvent;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
+     * @return mixed
      */
-    private $idUser;
-
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEvent(): ?string
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-        return $this->event;
+        $this->id = $id;
     }
 
-    public function setEvent(string $event): self
-    {
-        $this->event = $event;
 
-        return $this;
+
+    /**
+     * @return string
+     */
+    public function getNomEvent(): string
+    {
+        return $this->nomEvent;
     }
 
-    public function getType(): ?string
+    /**
+     * @param string $nomEvent
+     */
+    public function setNomEvent(string $nomEvent): void
     {
-        return $this->type;
+        $this->nomEvent = $nomEvent;
     }
 
-    public function setType(string $type): self
+    /**
+     * @return string
+     */
+    public function getTypeEvent(): string
     {
-        $this->type = $type;
-
-        return $this;
+        return $this->typeEvent;
     }
 
-    public function getDateDebutEvent(): ?string
+    /**
+     * @param string $typeEvent
+     */
+    public function setTypeEvent(string $typeEvent): void
+    {
+        $this->typeEvent = $typeEvent;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateDebutEvent(): \DateTime
     {
         return $this->dateDebutEvent;
     }
 
-    public function setDateDebutEvent(string $dateDebutEvent): self
+    /**
+     * @param \DateTime $dateDebutEvent
+     */
+    public function setDateDebutEvent(\DateTime $dateDebutEvent): void
     {
         $this->dateDebutEvent = $dateDebutEvent;
-
-        return $this;
     }
 
-    public function getDateFinEvent(): ?string
+    /**
+     * @return \DateTime
+     */
+    public function getDateFinEvent(): \DateTime
     {
         return $this->dateFinEvent;
     }
 
-    public function setDateFinEvent(?string $dateFinEvent): self
+    /**
+     * @param \DateTime $dateFinEvent
+     */
+    public function setDateFinEvent(\DateTime $dateFinEvent): void
     {
         $this->dateFinEvent = $dateFinEvent;
-
-        return $this;
     }
 
-    public function getLieuEvent(): ?string
+    /**
+     * @return string
+     */
+    public function getLieuEvent(): string
     {
         return $this->lieuEvent;
     }
 
-    public function setLieuEvent(string $lieuEvent): self
+    /**
+     * @param string $lieuEvent
+     */
+    public function setLieuEvent(string $lieuEvent): void
     {
         $this->lieuEvent = $lieuEvent;
-
-        return $this;
     }
 
-    public function getCapaciteEvent(): ?int
+    /**
+     * @return int
+     */
+    public function getCapaciteEvent(): int
     {
         return $this->capaciteEvent;
     }
 
-    public function setCapaciteEvent(int $capaciteEvent): self
+    /**
+     * @param int $capaciteEvent
+     */
+    public function setCapaciteEvent(int $capaciteEvent): void
     {
         $this->capaciteEvent = $capaciteEvent;
-
-        return $this;
     }
 
-    public function getDescriptionEvent(): ?string
+    /**
+     * @return string
+     */
+    public function getDescriptionEvent(): string
     {
         return $this->descriptionEvent;
     }
 
-    public function setDescriptionEvent(string $descriptionEvent): self
+    /**
+     * @param string $descriptionEvent
+     */
+    public function setDescriptionEvent(string $descriptionEvent): void
     {
         $this->descriptionEvent = $descriptionEvent;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getLogo(): ?string
     {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self
+    /**
+     * @param string $logo
+     */
+    public function setLogo(string $logo): void
     {
         $this->logo = $logo;
-
-        return $this;
     }
 
-    public function getPrixEvent(): ?int
+    /**
+     * @return int
+     */
+    public function getPrixEvent(): int
     {
         return $this->prixEvent;
     }
 
-    public function setPrixEvent(?int $prixEvent): self
+    /**
+     * @param int $prixEvent
+     */
+    public function setPrixEvent(int $prixEvent): void
     {
         $this->prixEvent = $prixEvent;
-
-        return $this;
     }
 
-    public function getIdUser(): ?User
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
     {
         return $this->idUser;
     }
 
-    public function setIdUser(?User $idUser): self
+    /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser): void
     {
         $this->idUser = $idUser;
-
-        return $this;
     }
+
+
+
+
+
 
 
 }

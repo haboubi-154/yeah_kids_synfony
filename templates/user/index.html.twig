@@ -14,8 +14,7 @@
                 <th>Email</th>
                 <th>Login</th>
                 <th>Img</th>
-                <th>Password</th>
-                <th>Salt</th>
+                
                 <th>Question</th>
                 <th>Responde</th>
                 <th>Role</th>
@@ -31,8 +30,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.login }}</td>
                 <td><img src="{{ asset(user.img)}}" alt=""></td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.salt }}</td>
+                
                 <td>{{ user.question }}</td>
                 <td>{{ user.responde }}</td>
                 <td>{{ user.role }}</td>
@@ -57,5 +55,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
 {% endblock %}

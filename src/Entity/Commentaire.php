@@ -2,50 +2,42 @@
 
 namespace App\Entity;
 
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire
- *
- * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="IDX_67F068BCC4E0D4DF", columns={"id_pub"}), @ORM\Index(name="IDX_67F068BC6B3CA4B", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CommentaireRepository::class)
  */
 class Commentaire
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $contenu;
 
     /**
-     * @var \User
+
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne (targetEntity=User::class)
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
 
     /**
-     * @var \Publication
+
      *
-     * @ORM\ManyToOne(targetEntity="Publication")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_pub", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne (targetEntity=Publication::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="id_pub", referencedColumnName="id")
      */
+
+
     private $idPub;
 
     public function getId(): ?int
@@ -65,28 +57,36 @@ class Commentaire
         return $this;
     }
 
-    public function getIdUser(): ?User
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    public function getIdPub(): ?Publication
+    /**
+     * @return mixed
+     */
+    public function getIdPub()
     {
         return $this->idPub;
     }
 
-    public function setIdPub(?Publication $idPub): self
+    /**
+     * @param mixed $idPub
+     */
+    public function setIdPub($idPub): void
     {
         $this->idPub = $idPub;
+    }
 
-        return $this;
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser): void
+    {
+        $this->idUser = $idUser;
     }
 
 

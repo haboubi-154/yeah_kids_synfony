@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -27,7 +29,7 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository,SessionInterface $session,String $role): Response
     {
-        
+
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findBy(array('role' => $role)),
         ]);
@@ -45,7 +47,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user=$user->hash_password(122);
             $userRepository->add($user);
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user/new.html.twig', [
@@ -63,7 +65,16 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+    /**
+    * @Route("/profile/", name="app_user_profile", methods={"GET", "POST"})
+     */
+    public function profile(UserRepository $userRepository,SessionInterface $session): Response
+    
+    {   
+        return $this->render('base.html.twig', [
+            'user' => $userRepository->findOneBy(array('id' => $session->get('id'))),
+        ]);
+    }
     /**
      * @Route("/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
      */
@@ -142,6 +153,8 @@ class UserController extends AbstractController
 
 $mailer->send($email);
  
+
+
 
 }
 

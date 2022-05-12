@@ -2,63 +2,49 @@
 
 namespace App\Entity;
 
+use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Produit
- *
- * @ORM\Table(name="produit")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProduitRepository::class)
  */
 class Produit
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_produit", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idProduit;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=15, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="prix", type="integer", nullable=false)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $prix;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quantite;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=50, nullable=false)
-     */
-    private $img;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="blob", length=0, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
-    public function getIdProduit(): ?int
+    /**
+     * @ORM\ManyToOne(targetEntity=Livraison::class, inversedBy="id_produit")
+     */
+    private $id_livraison;
+
+    public function getId(): ?int
     {
-        return $this->idProduit;
+        return $this->id;
     }
 
     public function getNom(): ?string
@@ -66,19 +52,19 @@ class Produit
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(?float $prix): self
     {
         $this->prix = $prix;
 
@@ -90,36 +76,34 @@ class Produit
         return $this->quantite;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setQuantite(?int $quantite): self
     {
         $this->quantite = $quantite;
 
         return $this;
     }
 
-    public function getImg(): ?string
-    {
-        return $this->img;
-    }
-
-    public function setImg(string $img): self
-    {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
+    public function getIdLivraison(): ?Livraison
+    {
+        return $this->id_livraison;
+    }
 
+    public function setIdLivraison(?Livraison $id_livraison): self
+    {
+        $this->id_livraison = $id_livraison;
+
+        return $this;
+    }
 }

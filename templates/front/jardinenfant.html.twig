@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleve index{% endblock %}
+
+{% block body %}
+
+
+
+
+
+    <!-- Class Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">Listes</span></p>
+                <h1 class="mb-4">Listes Jardins enfants</h1>
+            </div>
+            <div class="row">
+                {% for jardinenfant in jardinenfants %}
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{{asset('uploads/images/')}}{{ jardinenfant.logo}}" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Nom: {{ jardinenfant.nom }}</h4>
+                            <p class="card-text">Description: {{ jardinenfant.description }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Nb employés: </strong></div>
+                                <div class="col-6 py-1">{{ jardinenfant.nbEmployes }}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Adresse: </strong></div>
+                                <div class="col-6 py-1">{{ jardinenfant.adresse }}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Date Creation: </strong></div>
+                                <div class="col-6 py-1">{{ jardinenfant.dateCreation ? jardinenfant.dateCreation|date('Y-m-d') : '' }}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right"><strong>Prix :</strong></div>
+                                <div class="col-6 py-1">{{ jardinenfant.prix }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1 text-right border-right"><strong>Num Tel: </strong></div>
+                                <div class="col-6 py-1">{{ jardinenfant.telephone }}</div>
+                            </div>
+                        </div>
+                        <a href="{{ path('app_eleve_newFront') }}" class="btn btn-primary px-4 mx-auto mb-4">Réserver</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="col-lg-4 mb-5">
+
+                </div>
+                <div class="col-lg-4 mb-5">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Class End -->
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6265703db0d10b6f3e6f1d72/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
+
+        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, .2);;">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-primary font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.
+
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed by <a class="text-primary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+{% endblock %}

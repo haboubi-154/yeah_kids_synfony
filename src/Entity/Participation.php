@@ -2,42 +2,34 @@
 
 namespace App\Entity;
 
+use App\Repository\ParticipationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Participation
- *
- * @ORM\Table(name="participation", indexes={@ORM\Index(name="IDX_AB55E24FD52B4B97", columns={"id_event"}), @ORM\Index(name="IDX_AB55E24F6B3CA4B", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ParticipationRepository::class)
  */
 class Participation
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var \User
+
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne (targetEntity=User::class)
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
 
     /**
-     * @var \Event
+
      *
-     * @ORM\ManyToOne(targetEntity="Event")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_event", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne (targetEntity=Event::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="id_event", referencedColumnName="id")
      */
     private $idEvent;
 
@@ -46,29 +38,40 @@ class Participation
         return $this->id;
     }
 
-    public function getIdUser(): ?User
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
     {
         return $this->idUser;
     }
 
-    public function setIdUser(?User $idUser): self
+    /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser): void
     {
         $this->idUser = $idUser;
-
-        return $this;
     }
 
-    public function getIdEvent(): ?Event
+    /**
+     * @return mixed
+     */
+    public function getIdEvent()
     {
         return $this->idEvent;
     }
 
-    public function setIdEvent(?Event $idEvent): self
+    /**
+     * @param mixed $idEvent
+     */
+    public function setIdEvent($idEvent): void
     {
         $this->idEvent = $idEvent;
-
-        return $this;
     }
+
+
+
 
 
 }

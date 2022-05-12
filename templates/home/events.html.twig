@@ -1,0 +1,71 @@
+{% extends 'base2.html.twig' %}
+
+{% block content %}
+
+    <section id="events_header" class="events_header" data-parallax="scroll" data-bleed="200" data-z-index="-100" data-speed="0.1" data-image-src="img/events/events_bg.jpg" data-over-scroll-fix="true">
+        <div class="overlay_opacity"></div>
+        <div class="events_wave"></div>
+        <div class="container front_index">
+            <div class="row">
+                <div class="col-md-12 t_white">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Events</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <h2 class="section-title">Events</h2>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events_grids" class="events_grids">
+        <div class="container">
+            <div class="double_grids mb_50">
+                <div class="row">
+                    {% for participation in events %}
+                    <div class="col-md-6 wow fadeInUp">
+                        <div class="grids_block">
+                            <div class="grids_block_top">
+                                <img src={{ asset('uploads/'~ participation.logo) }} alt="">
+                            </div>
+                            <div class="grids_block_center">
+                                <div class="date_events_left b_red">
+                                    <div class="date_middle">
+                                        <br><br>
+                                        <p >{{ participation.dateDebutEvent  |date('Y-m-d ')}}</p>
+                                        <br>
+                                        <p>{{ participation.dateFinEvent |date('Y-m-d ')}}</p>
+
+                                    </div>
+                                </div>
+                                <div class="date_events_right b_red_dark">
+                                    <p class="block_time pb_10"><i class="fa fa-clock-o"><span></span></i>8:00 am - 5:00 pm</p>
+                                    <p class="block_time normal"><i class="fa fa-map-marker"><span></span></i>{{ participation.lieuEvent }}</p>
+                                </div>
+                            </div>
+                            <div class="grids_brief">
+                                <h4 class="grids_title t_red"><a href="{{ path('event', { id: participation.id}) }}">{{ participation.nomEvent }}</a></h4>
+                                <p class="grids_description t_grey">{{ participation.descriptionEvent }}</p>
+                                <a class="btn btn-info" href="{{ path('pdflivraison') }}">détails d'evenement</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class=" blog_nav ">
+                {{ knp_pagination_render(events) }}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

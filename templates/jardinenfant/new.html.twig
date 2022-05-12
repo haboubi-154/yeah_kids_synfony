@@ -1,0 +1,25 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Jardinenfant{% endblock %}
+
+{% block body %}
+
+
+
+    <div style ="display:flex;align-items: center;justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h1>Create new Jardinenfant</h1>
+
+                {{ include('jardinenfant/_form.html.twig') }}
+
+                <a href="{{ path('app_jardinenfant_index') }}">back to list</a>
+
+
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

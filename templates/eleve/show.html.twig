@@ -1,0 +1,53 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Eleve{% endblock %}
+
+{% block body %}
+
+
+    <div style ="display:flex;align-items: center;justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h1>Eleve</h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Ide</th>
+                        <td>{{ eleve.ide }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ eleve.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prenom</th>
+                        <td>{{ eleve.prenom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ eleve.age }}</td>
+                    </tr>
+                    <tr>
+                        <th>Idp</th>
+                        <td>{{ eleve.idp }}</td>
+                    </tr>
+                    <tr>
+                        <th>Idj</th>
+                        <td>{{ eleve.idj }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_eleve_index') }}">back to list</a>
+
+                <a href="{{ path('app_eleve_edit', {'ide': eleve.ide}) }}">edit</a>
+
+                {{ include('eleve/_delete_form.html.twig') }}
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

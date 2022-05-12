@@ -2,95 +2,63 @@
 
 namespace App\Entity;
 
+use App\Repository\LivraisonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Livraison
- *
- * @ORM\Table(name="livraison")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=LivraisonRepository::class)
  */
 class Livraison
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_livraison", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idLivraison;
+    private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_produit", type="integer", nullable=false)
-     */
-    private $idProduit;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
-     */
-    private $quantite;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="prix", type="integer", nullable=false)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $prix;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=30, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_parent", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $idParent;
+    private $quantite;
 
-    public function getIdLivraison(): ?int
+    /**
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="id_livraison")
+     */
+    private $id_produit;
+
+    public function __construct()
     {
-        return $this->idLivraison;
+        $this->id_produit = new ArrayCollection();
     }
 
-    public function getIdProduit(): ?int
+    public function getId(): ?int
     {
-        return $this->idProduit;
+        return $this->id;
+    }
+    public function setId(): ?int
+    {
+        return $this->id;
     }
 
-    public function setIdProduit(int $idProduit): self
-    {
-        $this->idProduit = $idProduit;
-
-        return $this;
-    }
-
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    public function getPrix(): ?int
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(?float $prix): self
     {
         $this->prix = $prix;
 
@@ -102,24 +70,52 @@ class Livraison
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getIdParent(): ?int
+    public function getQuantite(): ?int
     {
-        return $this->idParent;
+        return $this->quantite;
     }
 
-    public function setIdParent(int $idParent): self
+    public function setQuantite(?int $quantite): self
     {
-        $this->idParent = $idParent;
+        $this->quantite = $quantite;
 
         return $this;
     }
 
+    /**
+     * @return Collection<int, produit>
+     */
+    public function getIdProduit(): Collection
+    {
+        return $this->id_produit;
+    }
 
+    public function addIdProduit(produit $idProduit): self
+    {
+        if (!$this->id_produit->contains($idProduit)) {
+            $this->id_produit[] = $idProduit;
+            $idProduit->setIdLivraison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdProduit(produit $idProduit): self
+    {
+        if ($this->id_produit->removeElement($idProduit)) {
+            // set the owning side to null (unless already changed)
+            if ($idProduit->getIdLivraison() === $this) {
+                $idProduit->setIdLivraison(null);
+            }
+        }
+
+        return $this;
+    }
 }

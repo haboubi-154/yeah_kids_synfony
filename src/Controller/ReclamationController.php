@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use mysqli;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 /**
  * @Route("/reclamation")
@@ -30,7 +32,7 @@ class ReclamationController extends AbstractController
     /**
      * @Route("/new", name="app_reclamation_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ReclamationRepository $reclamationRepository): Response
+    public function new(Request $request, ReclamationRepository $reclamationRepository,SessionInterface $session): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);
@@ -83,8 +85,9 @@ $conn->close();
                 
 
             if($test == false){
-            $reclamationRepository->add($reclamation);
-            return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+                $reclamation->setIdParent($session->get('id'));
+                            $reclamationRepository->add($reclamation);
+            return $this->redirectToRoute('app_home_parent', [], Response::HTTP_SEE_OTHER);
         }
         
             else{

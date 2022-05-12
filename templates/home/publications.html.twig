@@ -1,0 +1,140 @@
+{% extends 'base2.html.twig' %}
+
+{% block content %}
+
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Publications</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="blog_page" class="blog_page">
+        <div class="container">
+            <div class="row pb_20">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 dot">
+                    <h2 class="section-title">Publications</h2>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+
+                    {% for participation in pubs %}
+                    <div class="blog_block wow fadeIn">
+                        <h3 class="blog_title">{{ participation.titre }}</h3>
+                        <div class="row blog_info">
+                            <div class="col-md-2 col-sm-2 col-xs-12 pr_0">
+                                <div class="date">
+                                    <ul>
+                                        <li class="number">21</li>
+                                        <li class="date_month">oct<br>2017</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12 prpl_0">
+                                <div class="author">
+                                    <ul>
+                                        <li class="title">Posted by</li>
+                                        <li class="description"><a href="#">Eya BenOuirane</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12 pl_0">
+                                <div class="tag">
+                                    <ul>
+                                        <li class="title">Tags</li>
+                                        <li class="description"><a href="#">Education</a>, <a href="#">Event</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog_block_img">
+                            <img src="img/blog/blog_page_img_1.jpg" alt="">
+                        </div>
+                        <div class="blog_brief">
+                            <p>{{ participation.description}}</p>
+                            <a class="btn btn-info" href="{{ path('pdflivraison') }}">détails pubs</a>
+                        </div>
+                        <div class="blog_link">
+                            <div class="blog_share social_icon t_white">
+                                <ul>
+                                    <li class="plr_10"><a href="#"><i class="plr_10 pr_10 b_comment fa fa-comment">5</i></a></li>
+                                    <li class="plr_10"><a href="#"><i class="pr_10 b_comment fa fa-eye">259</i></a></li>
+                                    <li><a href="#"><i class="b_blue_dark_social fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="b_blue_social fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="b_red_social fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="button">
+                                <a href="{{ path('publication', { 'id': participation.id } )}}">read more</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                    <div class="product__pagination blog__pagination">
+                        {{ knp_pagination_render(pubs) }}
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="sidebar">
+                        <div class="categories b_blue_light">
+                            <h4 class="title">Categories</h4>
+                            <ul>
+                                <li><a href="#">All <span>76</span></a></li>
+                                <li><a href="#">Education <span>17</span></a></li>
+                                <li><a href="#">Events <span>6</span></a></li>
+                                <li><a href="#">Event <span>24</span></a></li>
+                                <li><a href="#">Music lesson <span>16</span></a></li>
+                                <li><a href="#">Healthy food <span>9</span></a></li>
+                                <li><a href="#">Transport <span>4</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="row last_news">
+                            <h4 class="title">Latest Posts</h4>
+                            <div class="col-md-12 col-sm-4 block_news wow fadeInUp">
+                                <img src="img/blog/last_news_1.jpg" alt="last_news">
+                                <h3><a href="blog_article.html">Neptune Day</a></h3>
+                                <p class="date">21 oct 2017</p>
+                                <p class="brief">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim.</p>
+                                <a class="button" href="#">read more</a>
+                            </div>
+                            <div class="col-md-12 col-sm-4 block_news wow fadeInUp">
+                                <img src="img/blog/last_news_2.jpg" alt="last_news">
+                                <h3><a href="blog_article.html">International Watermelon Day</a></h3>
+                                <p class="date">25 oct 2017</p>
+                                <p class="brief">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <a class="button" href="#">read more</a>
+                            </div>
+                            <div class="col-md-12 col-sm-4 block_news wow fadeInUp">
+                                <img src="img/blog/last_news_3.jpg" alt="last_news">
+                                <h3><a href="blog_article.html">Sport competitions</a></h3>
+                                <p class="date">29 oct 2017</p>
+                                <p class="brief">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <a class="button" href="#">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </tbody>
+
+
+
+        </div>
+    </section>
+
+
+{% endblock %}

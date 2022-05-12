@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Jardinenfant
  *
  * @ORM\Table(name="jardinenfant")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\JardinenfantRepository")
  */
 class Jardinenfant
 {
@@ -77,46 +77,67 @@ class Jardinenfant
      */
     private $telephone;
 
+
+
+
     public function getIdj(): ?int
     {
         return $this->idj;
     }
 
-    public function getNom(): ?string
+    public function setIdj(int $idj): self
+    {
+        $this->idj = $idj;
+
+        return $this;
+    }
+
+
+
+
+
+    public function getNom(): ?String
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(String $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+
+    public function getDescription(): ?String
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(String $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getLogo(): ?string
+
+
+
+    public function getLogo(): ?String
     {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self
+    public function setLogo(String $logo): self
     {
         $this->logo = $logo;
 
         return $this;
     }
+
+
+
 
     public function getNbEmployes(): ?int
     {
@@ -130,17 +151,22 @@ class Jardinenfant
         return $this;
     }
 
-    public function getAdresse(): ?string
+
+
+
+    public function getAdresse(): ?String
     {
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(String $adresse): self
     {
         $this->adresse = $adresse;
 
         return $this;
     }
+
+
 
     public function getDateCreation(): ?\DateTimeInterface
     {
@@ -154,17 +180,22 @@ class Jardinenfant
         return $this;
     }
 
+
+
+
     public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(float $prix): self
+    public function setPrix(String $prix): self
     {
         $this->prix = $prix;
 
         return $this;
     }
+
+
 
     public function getTelephone(): ?int
     {
@@ -177,6 +208,8 @@ class Jardinenfant
 
         return $this;
     }
+
+
 
 
 }

@@ -1,0 +1,124 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Jardinenfant index{% endblock %}
+
+{% block body %}
+
+
+
+    <div style ="display:flex;align-items: center;justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h1>Jardinenfant index</h1>
+
+
+                {% for message in app.flashes('info') %}
+
+                    <div class="alert alert-success">
+
+                       {{ message }}
+
+                    </div>
+
+                {% endfor%}
+                {% for message in app.flashes('info') %}
+
+                    <div class="alert alert-warning">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+                {% for message in app.flashes('info') %}
+
+                    <div class="alert alert-success">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+                <br>
+                <nav id="navigation" class="style_one">
+                    <ul id="responsive">
+                        <li><a href="#">Trier Par</a>
+                            <ul>
+                                <li><a href="{{ path('trinom') }}">Nom</a></li>
+
+                            </ul>
+                            <ul>
+                                <li><a href="{{ path('trinbEmployes') }}">NbEmployes</a></li>
+
+                            </ul>
+                            <ul>
+                                <li><a href="{{ path('triprix') }}">prix</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </nav>
+                <br>
+                <a href="{{ path('listJardinEnf')}}"   class="btn-danger"> PDF</a>
+
+                <a href="{{ path('app_jardinenfant_excel')}}"    class="btn-success"> Export Excel</a>
+                <br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Idj</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Logo</th>
+                        <th>NbEmployes</th>
+                        <th>Adresse</th>
+                        <th>DateCreation</th>
+                        <th>Prix</th>
+                        <th>Telephone</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for jardinenfant in jardinenfants %}
+                        <tr>
+                            <td>{{ jardinenfant.idj }}</td>
+                            <td>{{ jardinenfant.nom }}</td>
+                            <td>{{ jardinenfant.description }}</td>
+                            <td><img alt="" class="" src="{{asset('uploads/images/')}}{{ jardinenfant.logo}}" width="110" height="80"></td>
+
+                            <td>{{ jardinenfant.nbEmployes }}</td>
+                            <td>{{ jardinenfant.adresse }}</td>
+                            <td>{{ jardinenfant.dateCreation ? jardinenfant.dateCreation|date('Y-m-d') : '' }}</td>
+                            <td>{{ jardinenfant.prix }}</td>
+                            <td>{{ jardinenfant.telephone }}</td>
+                            <td>
+                                <a href="{{ path('app_jardinenfant_show', {'idj': jardinenfant.idj}) }}" class="btn-info">show</a>
+                                <a href="{{ path('app_jardinenfant_edit', {'idj': jardinenfant.idj}) }}" class="btn-warning">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_jardinenfant_new') }}" class="btn-success">Create new</a>
+                <div class="utf_pagination_container_part margin-bottom-70">
+                    <nav class="pagination">
+                        <ul>
+                            <li>{{ knp_pagination_render(jardinenfants) }}</li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

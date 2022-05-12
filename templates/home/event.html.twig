@@ -1,0 +1,117 @@
+{% extends 'base2.html.twig' %}
+
+{% block content %}
+
+    <section id="single_event" class="single_event">
+        <div class="container">
+            <div class="row pb_20">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 dot">
+                    <h2 class="section-title">{{ event.nomEvent }}</h2>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+            <br>
+            <br>
+            <div class="row sideber_height">
+                <div class="col-md-9">
+                    <div class="main_block">
+                        <div class="grids_block_top">
+                            <img src={{ asset('uploads/'~ event.logo) }} alt="">
+                        </div>
+                        <div class="main_block_timer">
+                            <div id="register_timer"></div>
+                            <div class="timer_button">
+                                <p><a class="b_white register-form" href="#contact_form">Reserve Now</a></p>
+                                <form method="post" id="contact_form" class="white-popup-block mfp-hide">
+                                    <div class="register_block">
+                                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                                        <div class="register_form_top">
+                                            <div class="register_wave"></div>
+                                            <h2 class="section-title">{{ event.nomEvent }}</h2>
+                                        </div>
+                                        <div class="register_date">
+                                            <div class="register_wave"></div>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3">
+                                                    <ul class="r_date">
+                                                        <li class="d_number">{{ event.prixEvent }}</li>
+                                                        <li class="d_date">DT</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 col-sm-9">
+                                                    <ul class="r_info">
+                                                        <li><i class="fa fa-phone"></i>+216 55 312 456</li>
+                                                        <li><i class="fa fa-envelope"></i>event@yeahkids.com</li>
+                                                        <li><i class="fa fa-map-marker"></i>{{ event.lieuEvent }}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="register_input">
+                                            {{ form_start(form) }}
+                                                {{ form_widget(form.Ajouter,{'attr': {'class' : 'button'}}) }}
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="main_block_description pb_10">
+                            <H4>Description </H4>
+                            <p>{{ event.descriptionEvent }} </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="sidebar" class="sidebar">
+                        <div class="info_block t_white">
+                            <div class="date b_blue_light">
+                                <ul>
+                                    <li class="date_number">{{ event.capaciteEvent }}</li>
+                                    <li class="date_month">places</li>
+
+                                </ul>
+                            </div>
+                            <div class="contact b_blue">
+                                <ul>
+                                    <li class="fz_18"><i class="fa fa-clock-o"></i>8:00 am - 5:00 pm</li>
+                                    <li class="fz_18"><i class="fa fa-phone"></i>+216 55 312 456</li>
+                                    <li class="fz_15 normal"><i class="fa fa-envelope"></i>event@yeahkids.com</li>
+                                </ul>
+                            </div>
+                            <div class="document b_blue_dark">
+                                <h4><i class="fa fa-map-marker"></i>Adresse</h4>
+                                <ul>
+                                    <li>{{ event.lieuEvent }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="events">
+                            <div class="events_box">
+                                <div class="brief_events">
+                                    <h4><a href="#">Event A</a></h4>
+                                    <a class="btn btn-info" href="{{ path('pdflivraison') }}">détails d'evenement</a>                                </div>
+                                <div class="date_events">
+                                    <p>19 dec 2017</p>
+                                </div>
+                            </div>
+                            <div class="events_box">
+                                <div class="brief_events">
+                                    <h4><a href="#">Next Event B</a></h4>
+                                    <p>Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                                </div>
+                                <div class="date_events">
+                                    <p>27 dec 2017</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

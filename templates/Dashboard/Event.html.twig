@@ -1,0 +1,75 @@
+{% extends 'dashbase.html.twig' %}
+
+{% block content %}
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-xl-3"><h6 class="m-0 font-weight-bold text-primary">Event list</h6></div>
+
+                <div class="offset-md-6 col-xl-3"><a href="{{ path('new_event' )}}" class="btn btn-google btn-block"> Add New Event
+                </a></div>
+    <div class="hero__search">
+    <div class="hero__search__form">
+<form method="post" action="{{ path('findOneBy') }}">
+    <div class="hero__search__categories">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>lieu</th>
+                        <th>capacite</th>
+                        <th>description</th>
+                        <th>prix</th>
+                        <th>dateDebut</th>
+                        <th>dateFin</th>
+                        <th>typeEvent</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>title</th>
+                        <th>lieu</th>
+                        <th>capacite</th>
+                        <th>description</th>
+                        <th>prix</th>
+                        <th>dateDebut</th>
+                        <th>dateFin</th>
+                        <th>typeEvent</th>
+                        <th>Actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for participation in events %}
+                    <tr>
+                        <td>{{ participation.nomEvent }}</td>
+                        <td>{{ participation.lieuEvent }}</td>
+                        <td>{{ participation.capaciteEvent }}</td>
+                        <td>{{ participation.descriptionEvent }}</td>
+                        <td>{{ participation.prixEvent }}</td>
+                        <td>{{ participation.dateDebutEvent |date('Y-m-d ')}}</td>
+                        <td>{{ participation.dateFinEvent |date('Y-m-d ')}}</td>
+                        <td>{{ participation.typeEvent }}</td>
+                        <td>
+                            <a href="{{ path('delete_event', { 'id': participation.id } )}}" class="btn btn-danger btn-circle">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="{{ path('update_event', { 'id': participation.id } )}}" class="btn btn-warning btn-circle">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

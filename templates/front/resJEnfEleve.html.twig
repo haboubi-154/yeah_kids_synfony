@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleve index{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5"><span class="px-2">#</span></p>
+                <h1 class="mb-4">Eleve</h1>
+            </div>
+
+
+            <div style ="display:flex;align-items: center;justify-content: right; margin-top: 150px;">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create new Eleve</h5>
+
+                        <!-- General Form Elements -->
+                        {{ form_start(form,{'attr': {'novalidate':'novalidate'}}) }}
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-4 col-form-label">Nom</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nom,{'att':{'class':'form-control'}}) }}
+                                {{ form_errors(form.nom,{'att':{'class':'text-danger'}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-4 col-form-label">Prenom</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.prenom,{'att':{'class':'form-control'}}) }}
+                                {{ form_errors(form.prenom,{'att':{'class':'text-danger'}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-4 col-form-label">Age</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.age,{'att':{'class':'form-control'}}) }}
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-4 col-form-label">Idp</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.idp,{'att':{'class':'form-control'}}) }}
+                                {{ form_errors(form.idp,{'att':{'class':'text-danger'}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-4 col-form-label">Idj</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.idj,{'att':{'class':'form-control'}}) }}
+                                {{ form_errors(form.idj,{'att':{'class':'text-danger'}}) }}
+                            </div>
+                        </div>
+
+
+
+
+                        {{ form_end(form) }}<!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    <!-- Class End -->
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6265703db0d10b6f3e6f1d72/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
+
+        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, .2);;">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-primary font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.
+
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed by <a class="text-primary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+{% endblock %}

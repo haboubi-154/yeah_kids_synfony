@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 1</title>
+    <link rel="stylesheet" href={{asset('style.css')}} media="all" />
+</head>
+<body>
+<header class="clearfix">
+
+
+    <br>
+    <div id="company" class="clearfix">
+        <h1 class="align-center"><div>ile des enfants</div></h1>
+
+        <br>
+        <style>
+            body{
+                font:normal 12px/20PX "Liberation sans", Arial, Helvetica, sans-serif;
+                color:#585858;
+            }
+            img{
+                width:300px;
+                margin:10px;
+                border: solid 5px #E8E8E8;
+
+            }
+        </style>
+        <style>
+            table, th, td {
+                border: 4px solid #696969;
+                border-collapse: collapse;
+            }
+
+            tr:nth-child(even) {
+                background-color: #d3d3d3;
+            }
+
+            th:nth-child(even),td:nth-child(even) {
+                background-color: #d3d3d3;
+            }
+        </style>
+
+
+    </div>
+    <br>
+    <h1 class="align-center"><div>Liste des eleves</div></h1>
+    <br>
+</header>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<main>
+    <table border="2" class="center">
+        <thead>
+        <tr>
+            <th><h2>Nom</h2></th>
+            <th><h2>Prenom</h2></th>
+            <th><h2>Age</h2></th>
+            <th><h2>Idp</h2></th>
+            <th><h2>Idj</h2></th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for eleve in eleves %}
+            <tr>
+
+                <td>{{ eleve.nom }}</td>
+                <td>{{ eleve.prenom }}</td>
+                <td>{{ eleve.age }}</td>
+                <td>{{ eleve.idp }}</td>
+                <td>{{ eleve.idj }}</td>
+
+
+
+            </tr>
+
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</main>
+
+</body>
+</html>

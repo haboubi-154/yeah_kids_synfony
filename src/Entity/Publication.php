@@ -2,69 +2,59 @@
 
 namespace App\Entity;
 
+use App\Repository\PublicationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Publication
- *
- * @ORM\Table(name="publication", indexes={@ORM\Index(name="IDX_AF3C67796B3CA4B", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=PublicationRepository::class)
  */
 class Publication
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Il faut importer une image")
      */
     private $image;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
+      * @Assert\NotBlank (message ="le nom de la publication est obligatoire")
      */
     private $titre;
 
+
     /**
-     * @var string
+
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @ORM\ManyToOne (targetEntity=User::class)
+     */
+    private $idUser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+      * @Assert\NotBlank (message ="la description de l'event est obligatoire")
      */
     private $description;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="nb_like", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbLike;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="nb_dislike", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbDislike;
 
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
-     */
-    private $idUser;
+
 
     public function getId(): ?int
     {
@@ -131,16 +121,20 @@ class Publication
         return $this;
     }
 
-    public function getIdUser(): ?int
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
     {
         return $this->idUser;
     }
 
-    public function setIdUser(?User $idUser): self
+    /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser): void
     {
         $this->idUser = $idUser;
-
-        return $this;
     }
 
 

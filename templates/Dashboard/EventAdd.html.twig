@@ -1,0 +1,40 @@
+{% extends 'dashbase.html.twig' %}
+
+{% block content %}
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Event edit</h6>
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <span>Nom de l'évènement:</span>
+            {{ form_widget(form.nomEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'Nom Event'}}) }}
+
+            <br>
+
+            <span>DateDebut de l'évènement:</span>
+            {{ form_widget(form.dateDebutEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'dateDebutEvent'}}) }}
+            <br>
+            <span>DateFin de l'évènement:</span>
+            {{ form_widget(form.dateFinEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'dateFinEvent'}}) }}
+            <br>
+            <span>Lieu de l'évènement:</span>
+            {{ form_widget(form.lieuEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'Lieu'}}) }}
+            <br>
+            <span>Capacité de l'évènement:</span>
+            {{ form_widget(form.capaciteEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'capacite'}}) }}
+            <br>
+            <span>Description de l'évènement:</span>
+            {{ form_widget(form.descriptionEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'description'}}) }}
+            <br>
+            <span>Prix de l'évènement:</span>
+            {{ form_widget(form.prixEvent,{'attr': {'id' : 'message' , 'name' : 'message' , 'placeholder' : 'prix'}}) }}
+
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
